@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  backend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: development
+      DB_HOST: host.docker.internal  # For connecting to local DB
+      DB_PORT: 5432
+      DB_USERNAME: your_dev_user
+      DB_PASSWORD: your_dev_password
+      DB_NAME: your_dev_database
+      JWT_SECRET: dev_jwt_secret_for_testing_only
+      JWT_EXPIRES_IN: 7d
+      FRONTEND_URL: http://localhost:3000
+      ALLOWED_ORIGINS: http://localhost:3000
+    volumes:
+      - ./logs:/app/logs
