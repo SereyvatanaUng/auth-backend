@@ -11,12 +11,15 @@ export const getDatabaseConfig = (
   password: configService.get('DB_PASSWORD'),
   database: configService.get('DB_NAME'),
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  synchronize: configService.get('NODE_ENV') !== 'production', // CRITICAL: false in production
+  synchronize: configService.get('NODE_ENV') !== 'production',
   logging: configService.get('NODE_ENV') === 'development',
+
+  // SSL Configuration
   ssl:
-    configService.get('NODE_ENV') === 'production'
+    configService.get('DB_SSL') === 'true'
       ? { rejectUnauthorized: false }
       : false,
+
   migrations: ['dist/migrations/*{.ts,.js}'],
   migrationsRun: configService.get('NODE_ENV') === 'production',
 });
