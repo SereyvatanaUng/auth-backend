@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { AppController } from './app.controller';
 import { getDatabaseConfig } from './config/database.config';
 
 @Module({
@@ -17,5 +18,7 @@ import { getDatabaseConfig } from './config/database.config';
     }),
     AuthModule,
   ],
+  controllers: [AppController],
+  providers: [],
 })
 export class AppModule {}
