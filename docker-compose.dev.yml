@@ -1,15 +1,14 @@
-version: '3.8'
-
 services:
   backend-dev:
     build:
       context: .
       dockerfile: Dockerfile.prod
+    container_name: auth_backend_dev
     ports:
       - "3001:3001"
     environment:
       NODE_ENV: development
-      DB_HOST: host.docker.internal  # For connecting to local DB
+      DB_HOST: host.docker.internal
       DB_PORT: 5432
       DB_USERNAME: your_dev_user
       DB_PASSWORD: your_dev_password
